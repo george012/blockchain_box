@@ -1,10 +1,10 @@
 /*
-Package config 配置文件
+Package config config file(zh-cn:配置文件)
 */
 package config
 
 const (
 	ProjectName        = "blockchain_box"
-	ProjectVersion     = "v0.0.5"
+	ProjectVersion     = "v0.0.6"
 	ProjectDescription = "[blockchain] box"
 )
