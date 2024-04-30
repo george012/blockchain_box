@@ -36,7 +36,7 @@ func (rm ServiceFlag) String() string {
 	case ServiceFlagThirdParty:
 		return "third_party_service"
 	default:
-		return "None"
+		return "none"
 	}
 }
 

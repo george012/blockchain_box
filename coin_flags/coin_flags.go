@@ -1,3 +1,6 @@
+/*
+Package coin_flags coin flags(zh-cn:币种标识)
+*/
 package coin_flags
 
 var (
@@ -19,12 +22,12 @@ type CoinFlag int
 const (
 	CoinFlagNone CoinFlag = iota
 	CoinFlagBTC
+	CoinFlagLTC
+	CoinFlagDOGE
 	CoinFlagETC
 	CoinFlagETHW
 	CoinFlagZIL
 	CoinFlagOCTA
-	CoinFlagLTC
-	CoinFlagDOGE
 	CoinFlagMETA
 	CoinFlagCAU
 )
@@ -33,6 +36,10 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 	switch name {
 	case "BTC", "BitCoin", "Bitcoin":
 		return CoinFlagBTC
+	case "LTC", "LiteCoin", "Litecoin":
+		return CoinFlagLTC
+	case "DOGE", "DogeCoin", "Dogecoin":
+		return CoinFlagDOGE
 	case "ETC", "Ethereum Classic", "EthereumClassic":
 		return CoinFlagETC
 	case "ETHW", "EthereumPoW":
@@ -41,10 +48,6 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagZIL
 	case "OCTA", "OctaSpace":
 		return CoinFlagOCTA
-	case "LTC", "LiteCoin", "Litecoin":
-		return CoinFlagLTC
-	case "DOGE", "DogeCoin", "Dogecoin":
-		return CoinFlagDOGE
 	case "META", "MetaChain":
 		return CoinFlagMETA
 	case "CAU", "Canxium":
@@ -58,6 +61,10 @@ func (cf CoinFlag) CoinName() string {
 	switch cf {
 	case CoinFlagBTC:
 		return "BTC"
+	case CoinFlagLTC:
+		return "LTC"
+	case CoinFlagDOGE:
+		return "DOGE"
 	case CoinFlagETC:
 		return "ETC"
 	case CoinFlagETHW:
@@ -66,16 +73,12 @@ func (cf CoinFlag) CoinName() string {
 		return "ZIL"
 	case CoinFlagOCTA:
 		return "OCTA"
-	case CoinFlagLTC:
-		return "LTC"
-	case CoinFlagDOGE:
-		return "DOGE"
 	case CoinFlagMETA:
 		return "META"
 	case CoinFlagCAU:
 		return "CAU"
 	default:
-		return "None"
+		return "none"
 	}
 }
 
@@ -83,6 +86,10 @@ func (cf CoinFlag) CoinFullName() string {
 	switch cf {
 	case CoinFlagBTC:
 		return "Bitcoin"
+	case CoinFlagLTC:
+		return "Litecoin"
+	case CoinFlagDOGE:
+		return "Dogecoin"
 	case CoinFlagETC:
 		return "EthereumClassic"
 	case CoinFlagETHW:
@@ -91,16 +98,12 @@ func (cf CoinFlag) CoinFullName() string {
 		return "Zilliqa"
 	case CoinFlagOCTA:
 		return "OctaSpace"
-	case CoinFlagLTC:
-		return "Litecoin"
-	case CoinFlagDOGE:
-		return "Dogecoin"
 	case CoinFlagMETA:
 		return "MetaChain"
 	case CoinFlagCAU:
 		return "Canxium"
 	default:
-		return "None"
+		return "none"
 	}
 }
 

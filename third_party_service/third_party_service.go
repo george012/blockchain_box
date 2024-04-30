@@ -3,6 +3,10 @@ Package third_party_service Third-party services(zh-cn:第三方服务)
 */
 package third_party_service
 
+import (
+	"github.com/george012/blockchain_box/service_info"
+)
+
 var (
 	// SupportedThirdPartyServices 已支持的第三方服务Map
 	SupportedThirdPartyServices = map[string]ThirdPartyServiceFlag{
@@ -48,7 +52,7 @@ func (tpsf ThirdPartyServiceFlag) ServiceName() string {
 	case ThirdPartyServiceFlagNginx:
 		return "nginx"
 	default:
-		return "None"
+		return "none"
 	}
 }
 
@@ -57,4 +61,9 @@ func (tpsf ThirdPartyServiceFlag) ServiceName() string {
 func IsCSupported(serviceName string) bool {
 	_, exists := SupportedThirdPartyServices[serviceName]
 	return exists
+}
+
+type ServiceInfoThirdParty struct {
+	ServiceInfoBase       service_info.ServiceInfoBase // 基础信息
+	ThirdPartyServiceFlag ThirdPartyServiceFlag        // 第三方服务标识
 }
