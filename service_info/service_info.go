@@ -5,19 +5,56 @@ import "time"
 type ServiceStatus int
 
 const (
-	ServiceStatusStopped  ServiceStatus = iota // 未启动、已关闭
-	ServiceStatusRunning                       // 运行中
-	ServiceStatusStopping                      // 关闭中
+	ServiceStatusNone          ServiceStatus = iota
+	ServiceStatusActiveRunning               //服务正在运行
+	ServiceStatusActiveExited                //服务已经启动并成功退出
+	ServiceStatusActiveStopped               //服务已经启动但已经停止
+	ServiceStatusActiveDead                  //服务已经停止并且不会自动重启
+	ServiceStatusActivating                  //服务正在启动过程中
+	ServiceStatusDeactivating                //服务正在停止过程中
+	ServiceStatusInactive                    //服务未运行
+
 )
 
 func (ss ServiceStatus) String() string {
 	switch ss {
-	case ServiceStatusRunning:
-		return "running"
-	case ServiceStatusStopping:
-		return "stopping"
+	case ServiceStatusActiveRunning:
+		return "active (running)"
+	case ServiceStatusActiveExited:
+		return "active (exited)"
+	case ServiceStatusActiveStopped:
+		return "active (stopped)"
+	case ServiceStatusActiveDead:
+		return "active (dead)"
+	case ServiceStatusActivating:
+		return "activating"
+	case ServiceStatusDeactivating:
+		return "deactivating"
+	case ServiceStatusInactive:
+		return "inactive"
 	default:
-		return "stopped"
+		return "None"
+	}
+}
+
+func getServiceStatusNumberForStr(str string) ServiceStatus {
+	switch str {
+	case "active (running)":
+		return ServiceStatusActiveRunning
+	case "active (exited)":
+		return ServiceStatusActiveExited
+	case "active (stopped)":
+		return ServiceStatusActiveStopped
+	case "active (dead)":
+		return ServiceStatusActiveDead
+	case "activating":
+		return ServiceStatusActivating
+	case "deactivating":
+		return ServiceStatusDeactivating
+	case "inactive":
+		return ServiceStatusInactive
+	default:
+		return ServiceStatusNone
 	}
 }
 
