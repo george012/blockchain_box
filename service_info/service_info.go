@@ -77,6 +77,17 @@ func (rm ServiceFlag) String() string {
 	}
 }
 
+func GetServiceFlagNumberForStr(str string) ServiceFlag {
+	switch str {
+	case "custom_service":
+		return ServiceFlagCustomService
+	case "third_party_service":
+		return ServiceFlagThirdParty
+	default:
+		return ServiceFlagNone
+	}
+}
+
 type ServiceInfoBase struct {
 	ServiceFlagNone   ServiceFlag   // 服务标识：自定义 or 第三方标准服务
 	ServiceStatus     ServiceStatus // 服务运行状态
