@@ -37,7 +37,7 @@ func (ss ServiceStatus) String() string {
 	}
 }
 
-func getServiceStatusNumberForStr(str string) ServiceStatus {
+func GetServiceStatusNumberForStr(str string) ServiceStatus {
 	switch str {
 	case "active (running)":
 		return ServiceStatusActiveRunning
