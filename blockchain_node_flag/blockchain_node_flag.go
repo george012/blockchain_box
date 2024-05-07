@@ -59,6 +59,32 @@ func GetBlockChainNodeFlagFromCoinName(coinName string) BlockChainNodeFlag {
 	}
 }
 
+// GetBlockChainNodeFlagFromServiceName 根据NodeServiceName 获取节点标识
+func GetBlockChainNodeFlagFromServiceName(coinName string) BlockChainNodeFlag {
+	switch coinName {
+	case "btcd":
+		return BlockChainNodeFlagBitCoin
+	case "litecoind":
+		return BlockChainNodeFlagLiteCoin
+	case "dogecoind":
+		return BlockChainNodeFlagDogeCoin
+	case "core_geth":
+		return BlockChainNodeFlagETC
+	case "ethw_geth":
+		return BlockChainNodeFlagETHW
+	case "zilliqa":
+		return BlockChainNodeFlagZIL
+	case "octa_geth":
+		return BlockChainNodeFlagOCTA
+	case "meta_geth":
+		return BlockChainNodeFlagMETA
+	case "cau_geth":
+		return BlockChainNodeFlagCAU
+	default:
+		return BlockChainNodeFlagNone
+	}
+}
+
 // TODO  未定稿
 // NodeServiceName 节点服务名称
 func (bcnf BlockChainNodeFlag) NodeServiceName() string {
