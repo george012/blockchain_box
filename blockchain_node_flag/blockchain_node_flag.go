@@ -70,17 +70,17 @@ func (bcnf BlockChainNodeFlag) NodeServiceName() string {
 	case BlockChainNodeFlagDOGE:
 		return "dogecoind"
 	case BlockChainNodeFlagETC:
-		return "core_geth"
+		return "core-geth"
 	case BlockChainNodeFlagETHW:
-		return "ethw_geth"
+		return "ethw-geth"
 	case BlockChainNodeFlagZIL:
 		return "zilliqa"
 	case BlockChainNodeFlagOCTA:
-		return "octa_geth"
+		return "octa-geth"
 	case BlockChainNodeFlagMETA:
-		return "meta_geth"
+		return "meta-geth"
 	case BlockChainNodeFlagCAU:
-		return "cau_geth"
+		return "cau-geth"
 	default:
 		return "none"
 	}
@@ -95,17 +95,17 @@ func GetBlockChainNodeFlagFromServiceName(coinName string) BlockChainNodeFlag {
 		return BlockChainNodeFlagLTC
 	case "dogecoind":
 		return BlockChainNodeFlagDOGE
-	case "core_geth":
+	case "core-geth":
 		return BlockChainNodeFlagETC
-	case "ethw_geth":
+	case "ethw-geth":
 		return BlockChainNodeFlagETHW
 	case "zilliqa":
 		return BlockChainNodeFlagZIL
-	case "octa_geth":
+	case "octa-geth":
 		return BlockChainNodeFlagOCTA
-	case "meta_geth":
+	case "meta-geth":
 		return BlockChainNodeFlagMETA
-	case "cau_geth":
+	case "cau-geth":
 		return BlockChainNodeFlagCAU
 	default:
 		return BlockChainNodeFlagNone
