@@ -3,6 +3,11 @@ Package coin_flags coin flags(zh-cn:币种标识)
 */
 package coin_flags
 
+import (
+	"fmt"
+	"strings"
+)
+
 var (
 	SupportedCoinsMap = map[string]CoinFlag{
 		CoinFlagBTC.CoinName():  CoinFlagBTC,
@@ -105,6 +110,42 @@ func (cf CoinFlag) CoinFullName() string {
 	default:
 		return "none"
 	}
+}
+
+// GetBlockNodeBinaryName 获取区块链节点 二进制程序 名称
+func (cf CoinFlag) GetBlockNodeBinaryName() string {
+	switch cf {
+	case CoinFlagBTC:
+		return "btcd"
+	case CoinFlagLTC:
+		return "litecoind"
+	case CoinFlagDOGE:
+		return "dogecoind"
+	case CoinFlagETC:
+		return "geth"
+	case CoinFlagETHW:
+		return "geth"
+	case CoinFlagZIL:
+		return "zilliqa"
+	case CoinFlagOCTA:
+		return "geth"
+	case CoinFlagMETA:
+		return "geth"
+	case CoinFlagCAU:
+		return "canxium"
+	default:
+		return "none"
+	}
+}
+
+// GetBlockNodeBinarySystemdServiceName 获取区块链节点 二进制程序的Systemd服务 名称
+func (cf CoinFlag) GetBlockNodeBinarySystemdServiceName() string {
+	sName := fmt.Sprint("%-%", strings.ToLower(cf.CoinName()), cf.GetBlockNodeBinaryName())
+	// TODO 对ETC做单独处理
+	if cf == CoinFlagETC {
+		sName = fmt.Sprint("%-%", "core", cf.GetBlockNodeBinaryName())
+	}
+	return sName
 }
 
 func IsCoinSupported(coinName string) bool {
