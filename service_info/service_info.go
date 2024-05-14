@@ -1,6 +1,9 @@
 package service_info
 
-import "time"
+import (
+	"github.com/george012/blockchain_box/service_info/sys_infos"
+	"time"
+)
 
 type ServiceStatus int
 
@@ -89,11 +92,14 @@ func GetServiceFlagNumberForStr(str string) ServiceFlag {
 }
 
 type ServiceInfoBase struct {
-	ServiceFlagNone        ServiceFlag   // 服务标识：自定义 or 第三方标准服务
-	ServiceStatus          ServiceStatus // 服务运行状态
-	ServiceStaredTime      time.Time     // 启动时间
-	ServiceRemark          string        // 服务备注名
-	ServiceRunPath         string        // 服务程序路径
-	ServiceDataPath        string        // 服务数据文件路径
-	SystemdServiceFilePath string        // Systemd 服务文件所在
+	ServiceFlagNone        ServiceFlag                      // 服务标识：自定义 or 第三方标准服务
+	ServiceStatus          ServiceStatus                    // 服务运行状态
+	ServiceStaredTime      time.Time                        // 启动时间
+	ServiceRemark          string                           // 服务备注名
+	ServiceRunPath         string                           // 服务程序路径
+	ServiceDataPath        string                           // 服务数据文件路径
+	SystemdServiceFilePath string                           // Systemd 服务文件所在
+	IPs                    []sys_infos.NetworkInterfaceInfo // IP 信息
+	DiskInfos              []sys_infos.DiskInfo             // 硬盘信息
+	MemoryInfos            sys_infos.MemoryInfo             // 内存信息
 }
