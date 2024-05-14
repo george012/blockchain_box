@@ -140,10 +140,10 @@ func (cf CoinFlag) GetBlockNodeBinaryName() string {
 
 // GetBlockNodeBinarySystemdServiceName 获取区块链节点 二进制程序的Systemd服务 名称
 func (cf CoinFlag) GetBlockNodeBinarySystemdServiceName() string {
-	sName := fmt.Sprint("%-%", strings.ToLower(cf.CoinName()), cf.GetBlockNodeBinaryName())
+	sName := fmt.Sprintf("%s-%s", strings.ToLower(cf.CoinName()), cf.GetBlockNodeBinaryName())
 	// TODO 对ETC做单独处理
 	if cf == CoinFlagETC {
-		sName = fmt.Sprint("%-%", "core", cf.GetBlockNodeBinaryName())
+		sName = fmt.Sprintf("%s-%s", "core", cf.GetBlockNodeBinaryName())
 	}
 	return sName
 }
