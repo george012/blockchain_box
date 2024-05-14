@@ -5,6 +5,6 @@ package config
 
 const (
 	ProjectName        = "blockchain_box"
-	ProjectVersion     = "v0.0.14"
+	ProjectVersion     = "v0.0.15"
 	ProjectDescription = "[blockchain] box"
 )

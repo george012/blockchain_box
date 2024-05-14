@@ -95,12 +95,16 @@ type ServiceInfoBase struct {
 	ServiceFlag            ServiceFlag                      // 服务标识：自定义 or 第三方标准服务
 	ServiceStatus          ServiceStatus                    // 服务运行状态
 	ServiceStaredTime      time.Time                        // 启动时间
+	HostName               string                           // 服务器Hostname
 	ServiceName            string                           // 服务名
 	ServiceRemark          string                           // 服务备注名
+	ServiceDescription     string                           // Systemd 服务描述
+	CustomDescription      string                           // 自定义描述
 	ServiceRunPath         string                           // 服务程序路径
 	ServiceDataPath        string                           // 服务数据文件路径
 	SystemdServiceFilePath string                           // Systemd 服务文件所在
 	IPs                    []sys_infos.NetworkInterfaceInfo // IP 信息
 	DiskInfos              []sys_infos.DiskInfo             // 硬盘信息
 	MemoryInfos            sys_infos.MemoryInfo             // 内存信息
+	CPUInfos               sys_infos.CPUInfo                // CPU 信息
 }
