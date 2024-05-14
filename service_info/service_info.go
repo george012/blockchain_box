@@ -92,9 +92,10 @@ func GetServiceFlagNumberForStr(str string) ServiceFlag {
 }
 
 type ServiceInfoBase struct {
-	ServiceFlagNone        ServiceFlag                      // 服务标识：自定义 or 第三方标准服务
+	ServiceFlag            ServiceFlag                      // 服务标识：自定义 or 第三方标准服务
 	ServiceStatus          ServiceStatus                    // 服务运行状态
 	ServiceStaredTime      time.Time                        // 启动时间
+	ServiceName            string                           // 服务名
 	ServiceRemark          string                           // 服务备注名
 	ServiceRunPath         string                           // 服务程序路径
 	ServiceDataPath        string                           // 服务数据文件路径
