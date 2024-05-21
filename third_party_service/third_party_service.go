@@ -5,6 +5,7 @@ package third_party_service
 
 import (
 	"github.com/george012/blockchain_box/service_info"
+	"github.com/george012/blockchain_box/service_info/domain_info"
 )
 
 var (
@@ -64,6 +65,7 @@ func IsCSupported(serviceName string) bool {
 }
 
 type ServiceInfoThirdParty struct {
-	ServiceInfoBase       service_info.ServiceInfoBase // 基础信息
-	ThirdPartyServiceFlag ThirdPartyServiceFlag        // 第三方服务标识
+	ServiceInfoBase       service_info.ServiceInfoBase       // 基础信息
+	ThirdPartyServiceFlag ThirdPartyServiceFlag              // 第三方服务标识
+	DomainInfo            map[string]*domain_info.DomainInfo // 域名信息
 }

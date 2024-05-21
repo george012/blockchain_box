@@ -1,6 +1,7 @@
 package service_info
 
 import (
+	"github.com/george012/blockchain_box/service_info/cert_info"
 	"github.com/george012/blockchain_box/service_info/sys_infos"
 	"time"
 )
@@ -91,30 +92,21 @@ func GetServiceFlagNumberForStr(str string) ServiceFlag {
 	}
 }
 
-// Certificate 定义自定义服务器证书的结构体
-type Certificate struct {
-	DomainName          string    // 域名名称
-	ValidFrom           time.Time // 证书有效期开始时间
-	ValidUntil          time.Time // 证书有效期截止时间
-	DaysUntilExpiry     int       // 证书剩余有效天数
-	CertificateFilePath string    // 证书文件路径
-}
-
 type ServiceInfoBase struct {
-	ServiceFlag            ServiceFlag                      // 服务标识：自定义=1 or 第三方标准服务=2 未知服务=3
-	ServiceStatus          ServiceStatus                    // 服务运行状态
-	ServiceStaredTime      time.Time                        // 启动时间
-	HostName               string                           // 服务器Hostname
-	ServiceName            string                           // 服务名
-	ServiceRemark          string                           // 服务备注名
-	ServiceDescription     string                           // Systemd 服务描述
-	CustomDescription      string                           // 自定义描述
-	ServiceRunPath         string                           // 服务程序路径
-	ServiceDataPath        string                           // 服务数据文件路径
-	SystemdServiceFilePath string                           // Systemd 服务文件所在
-	Certificate            map[string]*Certificate          // 证书信息
-	IPs                    []sys_infos.NetworkInterfaceInfo // IP 信息
-	DiskInfos              []sys_infos.DiskInfo             // 硬盘信息
-	MemoryInfos            sys_infos.MemoryInfo             // 内存信息
-	CPUInfos               sys_infos.CPUInfo                // CPU 信息
+	ServiceFlag            ServiceFlag                       // 服务标识：自定义=1 or 第三方标准服务=2 未知服务=3
+	ServiceStatus          ServiceStatus                     // 服务运行状态
+	ServiceStaredTime      time.Time                         // 启动时间
+	HostName               string                            // 服务器Hostname
+	ServiceName            string                            // 服务名
+	ServiceRemark          string                            // 服务备注名
+	ServiceDescription     string                            // Systemd 服务描述
+	CustomDescription      string                            // 自定义描述
+	ServiceRunPath         string                            // 服务程序路径
+	ServiceDataPath        string                            // 服务数据文件路径
+	SystemdServiceFilePath string                            // Systemd 服务文件所在
+	Certificate            map[string]*cert_info.Certificate // 证书信息
+	IPs                    []sys_infos.NetworkInterfaceInfo  // IP 信息
+	DiskInfos              []sys_infos.DiskInfo              // 硬盘信息
+	MemoryInfos            sys_infos.MemoryInfo              // 内存信息
+	CPUInfos               sys_infos.CPUInfo                 // CPU 信息
 }
