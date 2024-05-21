@@ -64,9 +64,9 @@ func GetServiceStatusNumberForStr(str string) ServiceStatus {
 type ServiceFlag int
 
 const (
-	ServiceFlagNone ServiceFlag = iota // 未知服务
-	ServiceFlagThirdParty
-	ServiceFlagCustomService // 自定义服务
+	ServiceFlagNone          ServiceFlag = iota // 未知服务
+	ServiceFlagCustomService                    // 自定义服务
+	ServiceFlagThirdParty                       //第三方服务
 )
 
 func (rm ServiceFlag) String() string {
@@ -91,8 +91,17 @@ func GetServiceFlagNumberForStr(str string) ServiceFlag {
 	}
 }
 
+// Certificate 定义自定义服务器证书的结构体
+type Certificate struct {
+	DomainName          string    // 域名名称
+	ValidFrom           time.Time // 证书有效期开始时间
+	ValidUntil          time.Time // 证书有效期截止时间
+	DaysUntilExpiry     int       // 证书剩余有效天数
+	CertificateFilePath string    // 证书文件路径
+}
+
 type ServiceInfoBase struct {
-	ServiceFlag            ServiceFlag                      // 服务标识：自定义 or 第三方标准服务
+	ServiceFlag            ServiceFlag                      // 服务标识：自定义=1 or 第三方标准服务=2 未知服务=3
 	ServiceStatus          ServiceStatus                    // 服务运行状态
 	ServiceStaredTime      time.Time                        // 启动时间
 	HostName               string                           // 服务器Hostname
@@ -103,6 +112,7 @@ type ServiceInfoBase struct {
 	ServiceRunPath         string                           // 服务程序路径
 	ServiceDataPath        string                           // 服务数据文件路径
 	SystemdServiceFilePath string                           // Systemd 服务文件所在
+	Certificate            map[string]*Certificate          // 证书信息
 	IPs                    []sys_infos.NetworkInterfaceInfo // IP 信息
 	DiskInfos              []sys_infos.DiskInfo             // 硬盘信息
 	MemoryInfos            sys_infos.MemoryInfo             // 内存信息
