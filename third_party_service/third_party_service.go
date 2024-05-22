@@ -32,7 +32,7 @@ const (
 // str 服务名
 func GetThirdPartyServiceFlagFromStr(str string) ThirdPartyServiceFlag {
 	switch str {
-	case "redis":
+	case "redis-server":
 		return ThirdPartyServiceFlagRedis
 	case "mysql":
 		return ThirdPartyServiceFlagMysql
@@ -47,7 +47,7 @@ func GetThirdPartyServiceFlagFromStr(str string) ThirdPartyServiceFlag {
 func (tpsf ThirdPartyServiceFlag) ServiceName() string {
 	switch tpsf {
 	case ThirdPartyServiceFlagRedis:
-		return "redis"
+		return "redis-server"
 	case ThirdPartyServiceFlagMysql:
 		return "mysql"
 	case ThirdPartyServiceFlagNginx:
