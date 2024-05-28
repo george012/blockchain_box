@@ -24,23 +24,10 @@ var (
 
 type CoinFlag int
 
-//const (
-//	CoinFlagNone CoinFlag = iota
-//	CoinFlagBTC
-//	CoinFlagLTC
-//	CoinFlagDOGE
-//	CoinFlagETC
-//	CoinFlagETHW
-//	CoinFlagZIL
-//	CoinFlagOCTA
-//	CoinFlagMETA
-//	CoinFlagCAU
-//)
-
 const (
 	CoinFlagNone CoinFlag = iota //未知类型
-	CoinFlagMETA                 // EZIL,历史原因
-	CoinFlagCAU                  // K1,历史原因
+	CoinFlagMETA
+	CoinFlagCAU
 	CoinFlagETC
 	CoinFlagZIL
 	CoinFlagETHW
