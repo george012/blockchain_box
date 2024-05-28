@@ -25,16 +25,17 @@ var (
 type CoinFlag int
 
 const (
-	CoinFlagNone CoinFlag = iota
-	CoinFlagBTC
-	CoinFlagLTC
-	CoinFlagDOGE
-	CoinFlagETC
-	CoinFlagETHW
-	CoinFlagZIL
-	CoinFlagOCTA
+	CoinFlagNone CoinFlag = iota //未知类型
 	CoinFlagMETA
 	CoinFlagCAU
+	CoinFlagETC
+	CoinFlagZIL
+	CoinFlagETHW
+	CoinFlagBTC
+	CoinFlagLTC
+	CoinFlagDNX
+	CoinFlagOCTA
+	CoinFlagDOGE
 )
 
 func GetCoinFlagByCoinName(name string) CoinFlag {
@@ -57,6 +58,8 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagMETA
 	case "CAU", "Canxium":
 		return CoinFlagCAU
+	case "DNX", "Dynexcoin":
+		return CoinFlagDNX
 	default:
 		return CoinFlagNone
 	}
@@ -82,6 +85,8 @@ func (cf CoinFlag) CoinName() string {
 		return "META"
 	case CoinFlagCAU:
 		return "CAU"
+	case CoinFlagDNX:
+		return "DNX"
 	default:
 		return "none"
 	}
@@ -107,6 +112,8 @@ func (cf CoinFlag) CoinFullName() string {
 		return "MetaChain"
 	case CoinFlagCAU:
 		return "Canxium"
+	case CoinFlagDNX:
+		return "Dynexcoin"
 	default:
 		return "none"
 	}
@@ -133,6 +140,8 @@ func (cf CoinFlag) GetBlockNodeBinaryName() string {
 		return "geth"
 	case CoinFlagCAU:
 		return "canxium"
+	case CoinFlagDNX:
+		return "geth"
 	default:
 		return "none"
 	}
