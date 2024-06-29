@@ -8,62 +8,27 @@ import (
 	"strings"
 )
 
-var (
-	SupportedCoinsMap = map[string]CoinFlag{
-		CoinFlagBTC.CoinName():  CoinFlagBTC,
-		CoinFlagETC.CoinName():  CoinFlagETC,
-		CoinFlagETHW.CoinName(): CoinFlagETHW,
-		CoinFlagZIL.CoinName():  CoinFlagZIL,
-		CoinFlagOCTA.CoinName(): CoinFlagOCTA,
-		CoinFlagLTC.CoinName():  CoinFlagLTC,
-		CoinFlagDOGE.CoinName(): CoinFlagDOGE,
-		CoinFlagMETA.CoinName(): CoinFlagMETA,
-		CoinFlagCAU.CoinName():  CoinFlagCAU,
-	}
-)
-
+// CoinFlag
+/*
+	en: Blockchain currency identifier;
+	zh-CN: 区块链币种标识;
+*/
 type CoinFlag int
 
 const (
-	CoinFlagNone CoinFlag = iota //未知类型
-	CoinFlagMETA
-	CoinFlagCAU
-	CoinFlagETC
-	CoinFlagZIL
-	CoinFlagETHW
-	CoinFlagBTC
-	CoinFlagLTC
-	CoinFlagDNX
-	CoinFlagOCTA
-	CoinFlagDOGE
+	CoinFlagNone CoinFlag = iota // en: Unknown Type | zh-CN: 未知类型;
+	CoinFlagMETA                 // en: META | zh-CN: META;
+	CoinFlagCAU                  // en: CAU | zh-CN: CAU;
+	CoinFlagETC                  // en: ETC | zh-CN: ETC;
+	CoinFlagZIL                  // en: ZIL | zh-CN: ZIL;
+	CoinFlagETHW                 // en: ETHW | zh-CN: ETHW;
+	CoinFlagBTC                  // en: BTC | zh-CN: BTC;
+	CoinFlagLTC                  // en: LTC | zh-CN: LTC;
+	CoinFlagDNX                  // en: DNX | zh-CN: DNX;
+	CoinFlagOCTA                 // en: OCTA | zh-CN: OCTA;
+	CoinFlagDOGE                 // en: DOGE | zh-CN: DOGE;
+	CoinFlagETH                  // en: ETH | zh-CN: ETH;
 )
-
-func GetCoinFlagByCoinName(name string) CoinFlag {
-	switch name {
-	case "BTC", "BitCoin", "Bitcoin":
-		return CoinFlagBTC
-	case "LTC", "LiteCoin", "Litecoin":
-		return CoinFlagLTC
-	case "DOGE", "DogeCoin", "Dogecoin":
-		return CoinFlagDOGE
-	case "ETC", "Ethereum Classic", "EthereumClassic":
-		return CoinFlagETC
-	case "ETHW", "EthereumPoW":
-		return CoinFlagETHW
-	case "ZIL", "Zilliqa":
-		return CoinFlagZIL
-	case "OCTA", "OctaSpace":
-		return CoinFlagOCTA
-	case "META", "MetaChain":
-		return CoinFlagMETA
-	case "CAU", "Canxium":
-		return CoinFlagCAU
-	case "DNX", "Dynexcoin":
-		return CoinFlagDNX
-	default:
-		return CoinFlagNone
-	}
-}
 
 func (cf CoinFlag) CoinName() string {
 	switch cf {
@@ -87,6 +52,8 @@ func (cf CoinFlag) CoinName() string {
 		return "CAU"
 	case CoinFlagDNX:
 		return "DNX"
+	case CoinFlagETH:
+		return "ETH"
 	default:
 		return "none"
 	}
@@ -114,42 +81,18 @@ func (cf CoinFlag) CoinFullName() string {
 		return "Canxium"
 	case CoinFlagDNX:
 		return "Dynexcoin"
+	case CoinFlagETH:
+		return "Ethereum"
 	default:
 		return "none"
 	}
 }
 
-// CoinRedisPrefixName 币种对应redis的前缀名称
-func (cf CoinFlag) CoinRedisPrefixName() string {
-	switch cf {
-	case CoinFlagBTC:
-		return "btc"
-	case CoinFlagLTC:
-		return "ltc"
-	case CoinFlagDOGE:
-		return "doge"
-	case CoinFlagETC:
-		return "etc"
-	case CoinFlagETHW:
-		return "ethw"
-	case CoinFlagZIL:
-		return "zil"
-	case CoinFlagOCTA:
-		return "octa"
-	case CoinFlagMETA:
-		return "meta"
-	case CoinFlagCAU:
-		return "cau"
-	case CoinFlagDNX:
-		return "dnx"
-	case CoinFlagNone:
-		return "none"
-	default:
-		return "none"
-	}
-}
-
-// GetBlockNodeBinaryName 获取区块链节点 二进制程序 名称
+// GetBlockNodeBinaryName
+/*
+	en: Get blockchain node binary program name;
+	zh-CN: 获取区块链节点 二进制程序 名称;
+*/
 func (cf CoinFlag) GetBlockNodeBinaryName() string {
 	switch cf {
 	case CoinFlagBTC:
@@ -177,7 +120,11 @@ func (cf CoinFlag) GetBlockNodeBinaryName() string {
 	}
 }
 
-// GetBlockNodeBinarySystemdServiceName 获取区块链节点 二进制程序的Systemd服务 名称
+// GetBlockNodeBinarySystemdServiceName
+/*
+	en: Get the Systemd service name of the blockchain node binary program;
+	zh-CN: 获取区块链节点 二进制程序的Systemd服务 名称;
+*/
 func (cf CoinFlag) GetBlockNodeBinarySystemdServiceName() string {
 	sName := fmt.Sprintf("%s-%s", strings.ToLower(cf.CoinName()), cf.GetBlockNodeBinaryName())
 	// TODO 对ETC做单独处理
@@ -185,9 +132,4 @@ func (cf CoinFlag) GetBlockNodeBinarySystemdServiceName() string {
 		sName = fmt.Sprintf("%s-%s", "core", cf.GetBlockNodeBinaryName())
 	}
 	return sName
-}
-
-func IsCoinSupported(coinName string) bool {
-	_, exists := SupportedCoinsMap[coinName]
-	return exists
 }
