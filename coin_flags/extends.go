@@ -25,6 +25,10 @@ func (cf CoinFlag) CoinRedisPrefixName() string {
 		return "dnx"
 	case CoinFlagETH:
 		return "eth"
+	case CoinFlagSOL:
+		return "sol"
+	case CoinFlagFIL:
+		return "fil"
 	case CoinFlagNone:
 		return "none"
 	default:

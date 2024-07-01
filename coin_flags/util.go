@@ -24,6 +24,10 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagDNX
 	case "ETH", "Ethereum":
 		return CoinFlagETH
+	case "SOL", "Solana":
+		return CoinFlagSOL
+	case "FIL", "FileCoin", "Filecoin":
+		return CoinFlagFIL
 	default:
 		return CoinFlagNone
 	}

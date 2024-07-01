@@ -28,6 +28,8 @@ const (
 	CoinFlagOCTA                 // en: OCTA | zh-CN: OCTA;
 	CoinFlagDOGE                 // en: DOGE | zh-CN: DOGE;
 	CoinFlagETH                  // en: ETH | zh-CN: ETH;
+	CoinFlagSOL                  // en: SOL | zh-CN: SOL;
+	CoinFlagFIL                  // en: FIL | zh-CN: FIL;
 )
 
 func (cf CoinFlag) CoinName() string {
@@ -54,6 +56,10 @@ func (cf CoinFlag) CoinName() string {
 		return "DNX"
 	case CoinFlagETH:
 		return "ETH"
+	case CoinFlagSOL:
+		return "SOL"
+	case CoinFlagFIL:
+		return "FIL"
 	default:
 		return "none"
 	}
@@ -83,6 +89,10 @@ func (cf CoinFlag) CoinFullName() string {
 		return "Dynexcoin"
 	case CoinFlagETH:
 		return "Ethereum"
+	case CoinFlagSOL:
+		return "Solana"
+	case CoinFlagFIL:
+		return "FileCoin"
 	default:
 		return "none"
 	}
@@ -115,6 +125,12 @@ func (cf CoinFlag) GetBlockNodeBinaryName() string {
 		return "canxium"
 	case CoinFlagDNX:
 		return "geth"
+	case CoinFlagETH:
+		return "geth"
+	case CoinFlagSOL:
+		return "solana"
+	case CoinFlagFIL:
+		return "lotus"
 	default:
 		return "none"
 	}
