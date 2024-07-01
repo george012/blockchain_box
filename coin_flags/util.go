@@ -28,6 +28,8 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagSOL
 	case "FIL", "FileCoin", "Filecoin":
 		return CoinFlagFIL
+	case "ALEO", "Aleo", "aleo":
+		return CoinFlagAleo
 	default:
 		return CoinFlagNone
 	}
