@@ -40,3 +40,12 @@ func (cf CoinFlag) PowAlgorithm() string {
 		return "none"
 	}
 }
+
+func GetSupportedPowAlgorithm() map[string]string {
+	resMap := make(map[string]string)
+
+	for _, cf := range SupportedCoinsMap {
+		resMap[cf.CoinName()] = cf.PowAlgorithm()
+	}
+	return resMap
+}
