@@ -21,7 +21,7 @@ func TestNewDiffStructs(t *testing.T) {
 	newjstr, _ := json.MarshalIndent(&newDiff, "", "    ")
 	fmt.Printf("new diff :%s\n", string(newjstr))
 
-	achanDiff := HexDifficultyToDifficulty("0x000000000000000000000000000000000000000000000000000000012a05f200")
+	achanDiff := HexDifficultyToDifficulty("0xdbe6fecebdedd5beb573440e5a884d1b2fbf06fcce912adcb8d8422e")
 	achanDiffJstr, _ := json.MarshalIndent(&achanDiff, "", "    ")
 	fmt.Printf("dec new diff :%s\n", string(achanDiffJstr))
 }

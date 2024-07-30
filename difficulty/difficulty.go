@@ -10,7 +10,7 @@ import (
 // Difficulty 难度结构体
 type Difficulty struct {
 	Algorithm                     string
-	Difficulty                    int64
+	Difficulty                    *big.Int
 	DifficultyStringShort         string
 	DifficultyStringShortFull     string
 	DifficultyStringShort1024     string
@@ -18,15 +18,14 @@ type Difficulty struct {
 	DifficultyUnitShort           string
 	DifficultyHexString           string
 	DifficultyUnit                DiffUnit
-	DifficultyUnitExtendStr       string // 扩展拼接字段
-
-	DifficultyValue *big.Float // 存储计算后的难度值
+	DifficultyUnitExtendStr       string     // 扩展拼接字段
+	DifficultyValue               *big.Float // 存储计算后的难度值
 }
 
 // FormatUnit 单位计算公式 以 byte 为单位传入，根据数值不同换算成进制单位MB、GB等
 // fSed 小数点保留位数
 func (diff *Difficulty) FormatUnit(fSed int) {
-	baseDifficulty := new(big.Float).SetInt64(diff.Difficulty)
+	baseDifficulty := new(big.Float).SetInt(diff.Difficulty)
 	k := big.NewFloat(1000)
 	m := new(big.Float).Mul(k, k)
 	g := new(big.Float).Mul(m, k)
@@ -98,15 +97,18 @@ func (diff *Difficulty) FormatUnit(fSed int) {
 
 func (diff *Difficulty) CalculateSpecificDifficulty() {
 	switch diff.Algorithm {
-	case coin_flags.CoinFlagBTC.PowAlgorithm(), coin_flags.CoinFlagLTC.PowAlgorithm(), coin_flags.CoinFlagDOGE.PowAlgorithm():
-		diff.DifficultyValue = GetSHA256dDifficulty(new(big.Int).SetInt64(diff.Difficulty))
+	case coin_flags.CoinFlagBTC.PowAlgorithm():
+		diff.DifficultyValue = new(big.Float).SetInt(BTCTargetHexToDiff(diff.DifficultyHexString))
+
+	case coin_flags.CoinFlagLTC.PowAlgorithm():
+		diff.DifficultyValue = new(big.Float).SetInt(LTCTargetHexToDiff(diff.DifficultyHexString))
 
 	case coin_flags.CoinFlagETC.PowAlgorithm(), coin_flags.CoinFlagETHW.PowAlgorithm():
-		diff.DifficultyValue = new(big.Float).Quo(new(big.Float).SetInt(pow256Ethash), new(big.Float).SetInt64(diff.Difficulty))
+		diff.DifficultyValue = new(big.Float).Quo(new(big.Float).SetInt(pow256Ethash), new(big.Float).SetInt(diff.Difficulty))
 
 	case coin_flags.CoinFlagDNX.PowAlgorithm():
 		// 需要根据 DynexSolve 的具体难度计算方式进行实现
-		diff.DifficultyValue = new(big.Float).SetInt64(diff.Difficulty)
+		diff.DifficultyValue = new(big.Float).SetInt(diff.Difficulty)
 
 	case coin_flags.CoinFlagAleo.PowAlgorithm():
 		// zkSNARK 不使用工作量证明，难度为零
@@ -119,27 +121,30 @@ func (diff *Difficulty) CalculateSpecificDifficulty() {
 }
 
 func HexDifficultyToDifficulty(hexDifficulty string) map[string]*Difficulty {
-	// 去掉 "0x" 前缀
 	targetHex := strings.TrimPrefix(hexDifficulty, "0x")
-
-	// 将十六进制字符串转换为大整数
 	target := new(big.Int)
 	target.SetString(targetHex, 16)
 
 	diffMap := map[string]*Difficulty{}
 
 	for _, coin := range coin_flags.SupportedCoinsMap {
-		var difficulty int64
+		var difficulty *big.Int
 		switch coin.PowAlgorithm() {
-		case "SHA256d", "Scrypt":
-			difficulty = GetSHA256dTarget(target).Int64()
+		case "SHA256d":
+			difficulty = BTCTargetHexToDiff(hexDifficulty)
+		case "Scrypt":
+			difficulty = LTCTargetHexToDiff(hexDifficulty)
 		case "Ethash", "EtcHash":
-			difficulty = TargetHexToDiff(hexDifficulty).Int64()
+			difficulty = TargetHexToDiff(hexDifficulty)
 		default:
-			difficulty = target.Int64()
+			difficulty = target
 		}
 
-		diff := createDifficulty(difficulty, coin)
+		diff := &Difficulty{
+			Algorithm:           coin.PowAlgorithm(),
+			Difficulty:          difficulty,
+			DifficultyHexString: hexDifficulty,
+		}
 		diff.CalculateSpecificDifficulty()
 		diff.FormatUnit(3)
 		diffMap[coin.PowAlgorithm()] = diff
@@ -148,38 +153,35 @@ func HexDifficultyToDifficulty(hexDifficulty string) map[string]*Difficulty {
 	return diffMap
 }
 
-func createDifficulty(diffNumber int64, coin coin_flags.CoinFlag) *Difficulty {
-	hexStr := new(big.Int).SetInt64(diffNumber).Text(16)
-
-	// 添加 '0x' 前缀
-	hexStr = "0x" + hexStr
-
-	if len(hexStr) < 66 {
-		hexStr = "0x" + strings.Repeat("0", 66-len(hexStr)) + hexStr[2:]
-	}
-
-	diff := &Difficulty{
-		Algorithm:           coin.PowAlgorithm(),
-		Difficulty:          diffNumber,
-		DifficultyHexString: hexStr,
-	}
-
-	// 计算具体币种的难度
-	diff.CalculateSpecificDifficulty()
-
-	// 格式化单位
-	diff.FormatUnit(3)
-	return diff
-}
-
 func NewDifficultyMap(diffNumber int64) map[string]*Difficulty {
 	diffMap := map[string]*Difficulty{}
 
 	for _, coin := range coin_flags.SupportedCoinsMap {
-		diff := createDifficulty(diffNumber, coin)
+		var hexStr string
+		switch coin.PowAlgorithm() {
+		case "SHA256d":
+			hexStr = GetBTCTargetHex(diffNumber)
+		case "Scrypt":
+			hexStr = GetLTCTargetHex(diffNumber)
+		case "Ethash", "EtcHash":
+			hexStr = GetTargetHex(diffNumber)
+		default:
+			hexStr = new(big.Int).SetInt64(diffNumber).Text(16)
+			if len(hexStr) < 66 {
+				hexStr = "0x" + strings.Repeat("0", 66-len(hexStr)) + hexStr[2:]
+			}
+		}
+
+		difficulty := new(big.Int).SetInt64(diffNumber)
+		diff := &Difficulty{
+			Algorithm:           coin.PowAlgorithm(),
+			Difficulty:          difficulty,
+			DifficultyHexString: hexStr,
+		}
 		diff.CalculateSpecificDifficulty()
 		diff.FormatUnit(3)
 		diffMap[coin.PowAlgorithm()] = diff
 	}
+
 	return diffMap
 }
