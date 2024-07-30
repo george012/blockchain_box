@@ -86,7 +86,7 @@ func (diff *Difficulty) FormatUnit(fSed int) {
 		diff.DifficultyUnit = DiffUnitKilo
 		diff.DifficultyStringShort1024 = fmt.Sprintf(format, new(big.Float).Quo(baseDifficulty, k1024))
 	default:
-		diff.DifficultyUnit = DiffUnitMega
+		diff.DifficultyUnit = DiffUnitNone
 		diff.DifficultyStringShort = fmt.Sprintf(format, baseDifficulty)
 	}
 
@@ -98,10 +98,10 @@ func (diff *Difficulty) FormatUnit(fSed int) {
 func (diff *Difficulty) CalculateSpecificDifficulty() {
 	switch diff.Algorithm {
 	case coin_flags.CoinFlagBTC.PowAlgorithm():
-		diff.DifficultyValue = new(big.Float).SetInt(BTCTargetHexToDiff(diff.DifficultyHexString))
+		diff.DifficultyValue = new(big.Float).SetInt(TargetHexToDiffBySha256d(diff.DifficultyHexString))
 
 	case coin_flags.CoinFlagLTC.PowAlgorithm():
-		diff.DifficultyValue = new(big.Float).SetInt(LTCTargetHexToDiff(diff.DifficultyHexString))
+		diff.DifficultyValue = new(big.Float).SetInt(TargetHexToDiffByScrypt(diff.DifficultyHexString))
 
 	case coin_flags.CoinFlagETC.PowAlgorithm(), coin_flags.CoinFlagETHW.PowAlgorithm():
 		diff.DifficultyValue = new(big.Float).Quo(new(big.Float).SetInt(pow256Ethash), new(big.Float).SetInt(diff.Difficulty))
@@ -131,9 +131,9 @@ func HexDifficultyToDifficulty(hexDifficulty string) map[string]*Difficulty {
 		var difficulty *big.Int
 		switch coin.PowAlgorithm() {
 		case "SHA256d":
-			difficulty = BTCTargetHexToDiff(hexDifficulty)
+			difficulty = TargetHexToDiffBySha256d(hexDifficulty)
 		case "Scrypt":
-			difficulty = LTCTargetHexToDiff(hexDifficulty)
+			difficulty = TargetHexToDiffByScrypt(hexDifficulty)
 		case "Ethash", "EtcHash":
 			difficulty = TargetHexToDiff(hexDifficulty)
 		default:
@@ -160,9 +160,9 @@ func NewDifficultyMap(diffNumber int64) map[string]*Difficulty {
 		var hexStr string
 		switch coin.PowAlgorithm() {
 		case "SHA256d":
-			hexStr = GetBTCTargetHex(diffNumber)
+			hexStr = GetTargetHexBySha256d(diffNumber)
 		case "Scrypt":
-			hexStr = GetLTCTargetHex(diffNumber)
+			hexStr = GetTargetHexByScrypt(diffNumber)
 		case "Ethash", "EtcHash":
 			hexStr = GetTargetHex(diffNumber)
 		default:
