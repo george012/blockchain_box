@@ -31,6 +31,7 @@ const (
 	CoinFlagSOL                  // en: SOL | zh-CN: SOL;
 	CoinFlagFIL                  // en: FIL | zh-CN: FIL;
 	CoinFlagAleo                 // en: ALEO | zh-CN: ALEO;
+	CoinFlagBEL                  // en: BEL | zh-CN: BEL;
 )
 
 func (cf CoinFlag) CoinName() string {
@@ -63,6 +64,8 @@ func (cf CoinFlag) CoinName() string {
 		return "FIL"
 	case CoinFlagAleo:
 		return "ALEO"
+	case CoinFlagBEL:
+		return "BEL"
 	default:
 		return "none"
 	}
@@ -98,6 +101,8 @@ func (cf CoinFlag) CoinFullName() string {
 		return "FileCoin"
 	case CoinFlagAleo:
 		return "Aleo"
+	case CoinFlagBEL:
+		return "BELLS"
 	default:
 		return "none"
 	}
@@ -138,6 +143,8 @@ func (cf CoinFlag) GetBlockNodeBinaryName() string {
 		return "lotus"
 	case CoinFlagAleo:
 		return "snarkos"
+	case CoinFlagBEL:
+		return "bellsd"
 	default:
 		return "none"
 	}
