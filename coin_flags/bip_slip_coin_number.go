@@ -7,6 +7,7 @@ package coin_flags
 */
 const (
 	BIP_SLIP_CoinNumber_BitCoin         = 0
+	BIP_SLIP_CoinNumber_BitCoinTestNet  = 1
 	BIP_SLIP_CoinNumber_LiteCoin        = 2
 	BIP_SLIP_CoinNumber_DogeCoin        = 3
 	BIP_SLIP_CoinNumber_Ethereum        = 60
@@ -15,6 +16,7 @@ const (
 	BIP_SLIP_CoinNumber_Filecoin        = 461
 	BIP_SLIP_CoinNumber_Solana          = 501
 	BIP_SLIP_CoinNumber_Aleo            = 683
+	BIP_SLIP_CoinNumber_Bells           = 1
 )
 
 // GetBIPSLIPCoinNumber
@@ -45,7 +47,9 @@ func (cf CoinFlag) GetBIPSLIPCoinNumber() uint32 {
 		return BIP_SLIP_CoinNumber_Filecoin
 	case CoinFlagAleo:
 		return BIP_SLIP_CoinNumber_Aleo
+	case CoinFlagBEL:
+		return BIP_SLIP_CoinNumber_Bells
 	default:
-		return 0
+		return BIP_SLIP_CoinNumber_BitCoinTestNet
 	}
 }
