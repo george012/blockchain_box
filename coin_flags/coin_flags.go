@@ -4,6 +4,7 @@ Package coin_flags coin flags(zh-cn:币种标识)
 package coin_flags
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 )
@@ -33,6 +34,12 @@ const (
 	CoinFlagAleo                 // en: ALEO | zh-CN: ALEO;
 	CoinFlagBEL                  // en: BEL | zh-CN: BEL;
 )
+
+// MarshalJSON 为 CoinFlag 实现 MarshalJSON 方法
+func (cf CoinFlag) MarshalJSON() ([]byte, error) {
+	// 调用 String() 方法并将其作为 JSON 字符串输出
+	return json.Marshal(cf.CoinName())
+}
 
 func (cf CoinFlag) CoinName() string {
 	switch cf {
