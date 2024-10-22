@@ -33,6 +33,11 @@ const (
 	CoinFlagFIL                  // en: FIL | zh-CN: FIL;
 	CoinFlagAleo                 // en: ALEO | zh-CN: ALEO;
 	CoinFlagBEL                  // en: BEL | zh-CN: BEL;
+	CoinFlagPEPE
+	CoinFlagAUS
+	CoinFlagDOGM
+	CoinFlagEAC
+	CoinFlagDINGO
 )
 
 // MarshalJSON 为 CoinFlag 实现 MarshalJSON 方法
@@ -73,6 +78,16 @@ func (cf CoinFlag) CoinName() string {
 		return "ALEO"
 	case CoinFlagBEL:
 		return "BEL"
+	case CoinFlagPEPE:
+		return "PEPE"
+	case CoinFlagAUS:
+		return "AUS"
+	case CoinFlagDOGM:
+		return "DOGM"
+	case CoinFlagEAC:
+		return "EAC"
+	case CoinFlagDINGO:
+		return "DINGO"
 	default:
 		return "none"
 	}
@@ -110,6 +125,16 @@ func (cf CoinFlag) CoinFullName() string {
 		return "Aleo"
 	case CoinFlagBEL:
 		return "BELLS"
+	case CoinFlagPEPE:
+		return "Pepecoin"
+	case CoinFlagAUS:
+		return "AustraliaCash"
+	case CoinFlagDOGM:
+		return "Dogmcoin"
+	case CoinFlagEAC:
+		return "Earthcoin"
+	case CoinFlagDINGO:
+		return "Dingocoin"
 	default:
 		return "none"
 	}
