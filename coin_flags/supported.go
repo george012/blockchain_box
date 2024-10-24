@@ -12,7 +12,7 @@ var (
 		CoinFlagMETA.CoinName():  CoinFlagMETA,
 		CoinFlagCAU.CoinName():   CoinFlagCAU,
 		CoinFlagBEL.CoinName():   CoinFlagBEL,
-		CoinFlagPEPE.CoinName():  CoinFlagPEPE,
+		CoinFlagPEP.CoinName():   CoinFlagPEP,
 		CoinFlagAUS.CoinName():   CoinFlagAUS,
 		CoinFlagDOGM.CoinName():  CoinFlagDOGM,
 		CoinFlagEAC.CoinName():   CoinFlagEAC,
