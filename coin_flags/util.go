@@ -32,8 +32,8 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagAleo
 	case "BEL", "BELLS", "Bel", "Bells":
 		return CoinFlagBEL
-	case "PEPE", "Pepe", "Pepecoin", "PepeCoin":
-		return CoinFlagPEPE
+	case "PEP", "pep", "Pep", "Pepecoin", "PepeCoin":
+		return CoinFlagPEP
 	case "AUS", "AUS-Cash", "Australiacash", "Australia Cash", "AustraliaCash":
 		return CoinFlagAUS
 	case "Earthcoin", "EAC", "Earth", "earth", "EarthCoin", "eac":

@@ -17,11 +17,11 @@ const (
 	BIP_SLIP_CoinNumber_Solana          = 501
 	BIP_SLIP_CoinNumber_Aleo            = 683
 	BIP_SLIP_CoinNumber_Bells           = 1
-	BIP_SLIP_CoinNumber_Pepe            = 3434
-	BIP_SLIP_CoinNumber_Aus             = 1   //not found aus slip
-	BIP_SLIP_CoinNumber_DogmCoin        = 1   //not found dogm slip
-	BIP_SLIP_CoinNumber_Earthcoin       = 406 // ?=earths
-	BIP_SLIP_CoinNumber_Dingocoin       = 1   //not found dingo slip
+	BIP_SLIP_CoinNumber_Pep             = 1 //?=pepe 3434
+	BIP_SLIP_CoinNumber_Aus             = 1 //not found aus slip
+	BIP_SLIP_CoinNumber_DogmCoin        = 1 //not found dogm slip
+	BIP_SLIP_CoinNumber_Earthcoin       = 1 // ?=earths 406
+	BIP_SLIP_CoinNumber_Dingocoin       = 1 //not found dingo slip
 )
 
 // GetBIPSLIPCoinNumber
@@ -54,8 +54,8 @@ func (cf CoinFlag) GetBIPSLIPCoinNumber() uint32 {
 		return BIP_SLIP_CoinNumber_Aleo
 	case CoinFlagBEL:
 		return BIP_SLIP_CoinNumber_Bells
-	case CoinFlagPEPE:
-		return BIP_SLIP_CoinNumber_Pepe
+	case CoinFlagPEP:
+		return BIP_SLIP_CoinNumber_Pep
 	case CoinFlagAUS:
 		return BIP_SLIP_CoinNumber_Aus
 	case CoinFlagDOGM:

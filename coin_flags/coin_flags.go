@@ -33,7 +33,7 @@ const (
 	CoinFlagFIL                  // en: FIL | zh-CN: FIL;
 	CoinFlagAleo                 // en: ALEO | zh-CN: ALEO;
 	CoinFlagBEL                  // en: BEL | zh-CN: BEL;
-	CoinFlagPEPE
+	CoinFlagPEP
 	CoinFlagAUS
 	CoinFlagDOGM
 	CoinFlagEAC
@@ -78,8 +78,8 @@ func (cf CoinFlag) CoinName() string {
 		return "ALEO"
 	case CoinFlagBEL:
 		return "BEL"
-	case CoinFlagPEPE:
-		return "PEPE"
+	case CoinFlagPEP:
+		return "PEP"
 	case CoinFlagAUS:
 		return "AUS"
 	case CoinFlagDOGM:
@@ -125,7 +125,7 @@ func (cf CoinFlag) CoinFullName() string {
 		return "Aleo"
 	case CoinFlagBEL:
 		return "BELLS"
-	case CoinFlagPEPE:
+	case CoinFlagPEP:
 		return "Pepecoin"
 	case CoinFlagAUS:
 		return "AustraliaCash"
