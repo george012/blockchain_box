@@ -42,6 +42,8 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagDOGM
 	case "Dingocoin", "Dingo", "DingoCoin", "dingo":
 		return CoinFlagDINGO
+	case "LKY", "lky", "LuckyCoin", "Luckycoin":
+		return CoinFlagLKY
 
 	default:
 		return CoinFlagNone
