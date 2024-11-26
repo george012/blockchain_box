@@ -38,6 +38,7 @@ const (
 	CoinFlagDOGM
 	CoinFlagEAC
 	CoinFlagDINGO
+	CoinFlagLKY
 )
 
 // MarshalJSON 为 CoinFlag 实现 MarshalJSON 方法
@@ -88,6 +89,8 @@ func (cf CoinFlag) CoinName() string {
 		return "EAC"
 	case CoinFlagDINGO:
 		return "DINGO"
+	case CoinFlagLKY:
+		return "LKY"
 	default:
 		return "none"
 	}
@@ -135,6 +138,8 @@ func (cf CoinFlag) CoinFullName() string {
 		return "Earthcoin"
 	case CoinFlagDINGO:
 		return "Dingocoin"
+	case CoinFlagLKY:
+		return "Luckycoin"
 	default:
 		return "none"
 	}
