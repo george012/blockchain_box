@@ -92,6 +92,8 @@ func (cf CoinFlag) CoinName() string {
 		return "DINGO"
 	case CoinFlagLKY:
 		return "LKY"
+	case CoinFlagJKC:
+		return "JKC"
 	default:
 		return "none"
 	}

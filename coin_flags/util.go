@@ -45,7 +45,7 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 	case "Luckycoin", "LuckyCoin", "luckyCoin", "luckycoin", "LUCKYCOIN", "LKY", "Lky", "lky":
 		return CoinFlagLKY
 	case "Junkcoin", "JunkCoin", "junkCoin", "junkcoin", "JUNKCOIN", "JKC", "Jkc", "jkc":
-		return CoinFlagLKY
+		return CoinFlagJKC
 	default:
 		return CoinFlagNone
 	}
