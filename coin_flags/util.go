@@ -38,13 +38,14 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagAUS
 	case "Earthcoin", "EAC", "Earth", "earth", "EarthCoin", "eac":
 		return CoinFlagEAC
-	case "DOGM", "Dogmcoin", "Dogm", "dogm", "DogmCoin":
+	case "Dogmcoin", "DogmCoin", "dogmCoin", "dogmcoin", "DOGMCOIN", "DOGM", "Dogm", "dogm":
 		return CoinFlagDOGM
-	case "Dingocoin", "Dingo", "DingoCoin", "dingo":
+	case "Dingocoin", "DingoCoin", "dingoCoin", "dingocoin", "DINGOCOIN", "DINGO", "Dingo", "dingo":
 		return CoinFlagDINGO
-	case "LKY", "lky", "LuckyCoin", "Luckycoin":
+	case "Luckycoin", "LuckyCoin", "luckyCoin", "luckycoin", "LUCKYCOIN", "LKY", "Lky", "lky":
 		return CoinFlagLKY
-
+	case "Junkcoin", "JunkCoin", "junkCoin", "junkcoin", "JUNKCOIN", "JKC", "Jkc", "jkc":
+		return CoinFlagLKY
 	default:
 		return CoinFlagNone
 	}

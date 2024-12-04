@@ -18,6 +18,7 @@ var (
 		CoinFlagEAC.CoinName():   CoinFlagEAC,
 		CoinFlagDINGO.CoinName(): CoinFlagDINGO,
 		CoinFlagLKY.CoinName():   CoinFlagLKY,
+		CoinFlagJKC.CoinName():   CoinFlagJKC,
 	}
 )
 

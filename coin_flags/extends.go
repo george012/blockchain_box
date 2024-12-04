@@ -45,6 +45,8 @@ func (cf CoinFlag) CoinRedisPrefixName() string {
 		return "dingo"
 	case CoinFlagLKY:
 		return "lky"
+	case CoinFlagJKC:
+		return "jkc"
 	case CoinFlagNone:
 		return "none"
 	default:
