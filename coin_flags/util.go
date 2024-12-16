@@ -46,9 +46,9 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagLKY
 	case "Junkcoin", "JunkCoin", "junkCoin", "junkcoin", "JUNKCOIN", "JKC", "Jkc", "jkc":
 		return CoinFlagJKC
-	case "craftcoin", "Craftcoin", "CraftCoin":
+	case "Craftcoin", "CraftCoin", "craftCoin", "craftcoin", "CRAFTCOIN", "CRC", "Crc", "crc":
 		return CoinFlagCRC
-	case "myriad", "Myriad", "myriad-scrypt", "Myriad-scrypt":
+	case "Myriadcoin", "MyriadCoin", "myriadCoin", "myriadcoin", "MYRIADCOIN", "XMY", "Xmy", "xmy", "MYRIAD", "Myriad", "myriad":
 		return CoinFlagXMY
 	default:
 		return CoinFlagNone
