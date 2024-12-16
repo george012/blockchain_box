@@ -24,6 +24,8 @@ const (
 	BIP_SLIP_CoinNumber_Dingocoin       = 1 //not found dingo slip
 	BIP_SLIP_CoinNumber_Luckycoin       = 1 //not found lky slip
 	BIP_SLIP_CoinNumber_Junkcoin        = 1 //not found jkc slip
+	BIP_SLIP_CoinNumber_Craftcoin       = 1 //not found crc slip
+	BIP_SLIP_CoinNumber_Myriad          = 1 //not found xmy slip
 
 )
 
@@ -71,6 +73,10 @@ func (cf CoinFlag) GetBIPSLIPCoinNumber() uint32 {
 		return BIP_SLIP_CoinNumber_Luckycoin
 	case CoinFlagJKC:
 		return BIP_SLIP_CoinNumber_Junkcoin
+	case CoinFlagCRC:
+		return BIP_SLIP_CoinNumber_Craftcoin
+	case CoinFlagXMY:
+		return BIP_SLIP_CoinNumber_Myriad
 	default:
 		return BIP_SLIP_CoinNumber_BitCoinTestNet
 	}
