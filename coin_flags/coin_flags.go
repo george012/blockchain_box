@@ -42,6 +42,11 @@ const (
 	CoinFlagJKC
 	CoinFlagCRC
 	CoinFlagXMY
+	CoinFlagSHIC
+	CoinFlagBRC
+	CoinFlagFLIN
+	CoinFlagBONC
+	CoinFlagDEV
 )
 
 // MarshalJSON 为 CoinFlag 实现 MarshalJSON 方法
@@ -100,6 +105,16 @@ func (cf CoinFlag) CoinName() string {
 		return "CRC"
 	case CoinFlagXMY:
 		return "XMY"
+	case CoinFlagSHIC:
+		return "SHIC"
+	case CoinFlagBRC:
+		return "BRC"
+	case CoinFlagFLIN:
+		return "FLIN"
+	case CoinFlagBONC:
+		return "BONC"
+	case CoinFlagDEV:
+		return "DEV"
 	default:
 		return "none"
 	}
@@ -155,6 +170,16 @@ func (cf CoinFlag) CoinFullName() string {
 		return "Craftcoin"
 	case CoinFlagXMY:
 		return "Myriad"
+	case CoinFlagSHIC:
+		return "Shibacoin"
+	case CoinFlagBRC:
+		return "BeersCoin"
+	case CoinFlagFLIN:
+		return "FlinCoin"
+	case CoinFlagBONC:
+		return "BonkCoin"
+	case CoinFlagDEV:
+		return "DogecoinEV"
 	default:
 		return "none"
 	}
