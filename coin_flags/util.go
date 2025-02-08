@@ -2,11 +2,11 @@ package coin_flags
 
 func GetCoinFlagByCoinName(name string) CoinFlag {
 	switch name {
-	case "BTC", "BitCoin", "Bitcoin":
+	case "BitCoin", "Bitcoin", "bitcoin", "BTC", "btc", "Btc":
 		return CoinFlagBTC
-	case "LTC", "LiteCoin", "Litecoin":
+	case "LiteCoin", "Litecoin", "LTC", "Ltc", "ltc":
 		return CoinFlagLTC
-	case "DOGE", "DogeCoin", "Dogecoin":
+	case "DogeCoin", "Dogecoin", "dogecoin", "DOGE", "doge", "Doge":
 		return CoinFlagDOGE
 	case "ETC", "Ethereum Classic", "EthereumClassic":
 		return CoinFlagETC
@@ -30,9 +30,9 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagFIL
 	case "ALEO", "Aleo", "aleo":
 		return CoinFlagAleo
-	case "BEL", "BELLS", "Bel", "Bells":
+	case "BELLS", "Bells", "bells", "BEL", "Bel", "bel":
 		return CoinFlagBEL
-	case "PEP", "pep", "Pep", "Pepecoin", "PepeCoin":
+	case "PEP", "pep", "Pep", "Pepecoin", "PepeCoin", "pepcoin":
 		return CoinFlagPEP
 	case "AUS", "AUS-Cash", "Australiacash", "Australia Cash", "AustraliaCash":
 		return CoinFlagAUS
