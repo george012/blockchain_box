@@ -60,6 +60,8 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagBONC
 	case "DogecoinEV", "Dogecoinev", "dogecoinEV", "dogecoinev", "DOGECOINEV", "DEV", "Dev", "dev":
 		return CoinFlagDEV
+	case "BBQCoin", "BBQcoin", "bbqCoin", "bbqcoin", "BBQCOIN", "BQC", "Bqc", "bqc":
+		return CoinFlagBQC
 	default:
 		return CoinFlagNone
 	}
