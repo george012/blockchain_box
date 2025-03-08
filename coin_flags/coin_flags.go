@@ -48,6 +48,7 @@ const (
 	CoinFlagBONC
 	CoinFlagDEV
 	CoinFlagBQC
+	CoinFlagMARS
 )
 
 // MarshalJSON 为 CoinFlag 实现 MarshalJSON 方法
@@ -118,6 +119,8 @@ func (cf CoinFlag) CoinName() string {
 		return "DEV"
 	case CoinFlagBQC:
 		return "BQC"
+	case CoinFlagMARS:
+		return "MARS"
 	default:
 		return "none"
 	}
@@ -185,6 +188,8 @@ func (cf CoinFlag) CoinFullName() string {
 		return "DogecoinEV"
 	case CoinFlagBQC:
 		return "BBQCoin"
+	case CoinFlagMARS:
+		return "MarsCoin"
 	default:
 		return "none"
 	}
@@ -229,6 +234,8 @@ func (cf CoinFlag) GetBlockNodeBinaryName() string {
 		return "bellsd"
 	case CoinFlagBQC:
 		return "bbqcoind"
+	case CoinFlagMARS:
+		return "marscoind"
 	default:
 		return "none"
 	}

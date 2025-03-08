@@ -62,6 +62,8 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagDEV
 	case "BBQCoin", "BBQcoin", "bbqCoin", "bbqcoin", "BBQCOIN", "BQC", "Bqc", "bqc":
 		return CoinFlagBQC
+	case "MarsCoin", "Marscoin", "marsCoin", "marscoin", "MARSCOIN", "MARS", "Mars", "mars":
+		return CoinFlagMARS
 	default:
 		return CoinFlagNone
 	}
