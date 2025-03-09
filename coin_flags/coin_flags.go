@@ -157,7 +157,7 @@ func (cf CoinFlag) CoinFullName() string {
 	case CoinFlagAleo:
 		return "Aleo"
 	case CoinFlagBEL:
-		return "BELLS"
+		return "BellsCoin"
 	case CoinFlagPEP:
 		return "Pepecoin"
 	case CoinFlagAUS:
@@ -177,7 +177,7 @@ func (cf CoinFlag) CoinFullName() string {
 	case CoinFlagXMY:
 		return "Myriad"
 	case CoinFlagSHIC:
-		return "Shibacoin"
+		return "ShibainuCoin"
 	case CoinFlagBRC:
 		return "BeersCoin"
 	case CoinFlagFLIN:
