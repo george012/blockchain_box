@@ -66,6 +66,16 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagMARS
 	case "FlopCoin", "Flopcoin", "flopCoin", "flopcoin", "FLOPCOIN", "FLOP", "Flop", "flop":
 		return CoinFlagFLOP
+	case "NameCoin", "Namecoin", "nameCoin", "namecoin", "NAMECOIN", "NMC", "Nmc", "nmc":
+		return CoinFlagNMC
+	case "FractalBitcoin", "Fractalbitcoin", "fractalBitcoin", "fractalbitcoin", "FRACTALBITCOIN", "FB", "Fb", "fb":
+		return CoinFlagFB
+	case "Hathor", "hathor", "HATHOR", "HTR", "Htr", "htr":
+		return CoinFlagHTR
+	case "Elastos", "elastos", "ELASTOS", "ELA", "Ela", "ela":
+		return CoinFlagELA
+	case "BitcoinCash", "Bitcoincash", "bitcoinCash", "bitcoincash", "BITCOINCASH", "BCH", "Bch", "bch":
+		return CoinFlagBCH
 	default:
 		return CoinFlagNone
 	}
