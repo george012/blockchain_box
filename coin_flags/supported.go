@@ -28,6 +28,7 @@ var (
 		CoinFlagDEV.CoinName():   CoinFlagDEV,
 		CoinFlagBQC.CoinName():   CoinFlagBQC,
 		CoinFlagMARS.CoinName():  CoinFlagMARS,
+		CoinFlagFLOP.CoinName():  CoinFlagFLOP,
 	}
 )
 
