@@ -34,6 +34,7 @@ var (
 		CoinFlagHTR.CoinName():   CoinFlagHTR,
 		CoinFlagELA.CoinName():   CoinFlagELA,
 		CoinFlagBCH.CoinName():   CoinFlagBCH,
+		CoinFlagLBW.CoinName():   CoinFlagLBW,
 	}
 )
 

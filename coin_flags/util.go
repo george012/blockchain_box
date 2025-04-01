@@ -76,6 +76,8 @@ func GetCoinFlagByCoinName(name string) CoinFlag {
 		return CoinFlagELA
 	case "BitcoinCash", "Bitcoincash", "bitcoinCash", "bitcoincash", "BITCOINCASH", "BCH", "Bch", "bch":
 		return CoinFlagBCH
+	case "LebowskisCoin", "Lebowskiscoin", "lebowskisCoin", "lebowskiscoin", "LEBOWSKISCOIN", "LBW", "Lbw", "lbw":
+		return CoinFlagLBW
 	default:
 		return CoinFlagNone
 	}
